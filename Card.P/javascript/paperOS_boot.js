@@ -99,7 +99,18 @@ if(!localStorage.getItem("computator")||localStorage.getItem("computator")=='[]'
     localStorage.setItem("computator",JSON.stringify(computator));
   }else{
     var bootloader = localStorage.getItem("computator");
-    var computator = sortNestedLists(JSON.parse(bootloader));
+    var computator = JSON.parse(bootloader).sort((a, b) => {
+      const aIsFolder = Array.isArray(a[1]);
+      const bIsFolder = Array.isArray(b[1]);
+      
+      if (aIsFolder === bIsFolder) {
+          return a[0].localeCompare(b[0]);
+      } else if (aIsFolder) {
+          return -1;
+      } else {
+          return 1;
+      }
+  });
     
   }
   var pathElements = "p/sys/boot/systemCommands.js".replace(/\\$|\/$/, "").split(/\\|\//);

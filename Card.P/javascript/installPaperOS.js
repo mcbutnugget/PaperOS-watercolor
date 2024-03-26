@@ -47,10 +47,10 @@ await POSH.say("p/sys/assets/PaperOS_keyAssets/fonts");
 await POSH.FileSys.createFile("p/sys/assets/PaperOS_keyAssets/fonts","paper8-mono.ttf");
 //puts the binary from 'paper8-mono.ttf' to the paper8-mono.ttf inside of paperOS
 readBinary("/fonts/paper8-mono.ttf").then(binaryData => {
-        //const decoder = new TextDecoder();
-        //const outputBinary = decoder.decode(binaryData);
-        //console.log('Binary data:', outputBinary);
-        // Handle the binary data as needed
+        const decoder = new TextDecoder();
+        const outputBinary = decoder.decode(binaryData);
+        console.log('Binary data:', outputBinary);
+
         POSH.FileSys.writeFile("p/sys/assets/PaperOS_keyAssets/fonts/paper8-mono.ttf",  binaryData);
 })
 .catch(error => {
@@ -61,11 +61,11 @@ readBinary("/fonts/paper8-mono.ttf").then(binaryData => {
 await POSH.say("p/sys/assets/PaperOS_keyAssets/fonts/paper8-mono.ttf");
 await POSH.FileSys.createFile("p/sys/assets/PaperOS_bootLogo","00.png");
 await readBinary("/images/bootImages/00.png").then(binaryData => {
-        //const decoder = new TextDecoder();
-        //const outputBinary = decoder.decode(binaryData);
+        const decoder = new TextDecoder();
+        const outputBinary = decoder.decode(binaryData);
         //console.log('Binary data:', outputBinary);
-        // Handle the binary data as needed
-        POSH.FileSys.writeFile("p/sys/assets/PaperOS_bootLogo/00.png",  binaryData);
+        console.log("binaryDat:", binaryData);
+        POSH.FileSys.writeFile("p/sys/assets/PaperOS_bootLogo/00.png",  outputBinary);
 })
 .catch(error => {
         console.error('Error reading the file:', error);

@@ -1,4 +1,4 @@
-POSH.clear();
+
 function readDisk(filepath) {
     return fetch(filepath)
         .then(response => {
@@ -35,6 +35,7 @@ function readBinary(filepath) {
     const encoder = new TextEncoder();
     return encoder.encode(str).buffer;
 }
+
 async function start(){
     //document.body.requestFullscreen();
     var arrayBuffer = POSH.FileSys.readFile("p/sys/assets/PaperOS_bootLogo/00.png");
@@ -46,9 +47,9 @@ async function start(){
 
     // Create a data URL from the Blob
     const imageUrl = URL.createObjectURL(blob);
-    document.body.innerHTML = "<img draggable='false' src='"+imageUrl+"' style='position: absolute; top: 50%; left: 50%; transform: translate(-55%, -50%); width:600px; height:160px;'/>";
+    document.getElementById("console").innerHTML = "<img draggable='false' src='"+imageUrl+"' style='position: absolute; top: 50%; left: 50%; transform: translate(-55%, -50%); width:600px; height:160px;'/>";
     await POSH.pause(3000);
-    eval(POSH.FileSys.readFile(""))
+    eval(POSH.FileSys.readFile("p/sys/paperOS/paperOSLib.js"))
 
 }
 start();
